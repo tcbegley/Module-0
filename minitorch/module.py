@@ -1,13 +1,13 @@
 class Module:
     """
-    Modules form a tree that store parameters and other
-    submodules. They make up the basis of neural network stacks.
+    Modules form a tree that store parameters and other submodules. They make up the
+    basis of neural network stacks.
 
     Attributes:
         _modules (dict of name x :class:`Module`): Storage of the child modules
-        _parameters (dict of name x :class:`Parameter`): Storage of the module's parameters
-        training (bool): Whether the module is in training mode or evaluation mode
-
+        _parameters (dict of name x :class:`Parameter`): Storage of the module's
+            parameters
+        training (bool): Whether the module is in training mode or evaluation mode.
     """
 
     def __init__(self):
@@ -21,29 +21,40 @@ class Module:
 
     def train(self):
         "Set the mode of this module and all descendent modules to `train`."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        self.training = True
+        for module in self.modules():
+            module.train()
 
     def eval(self):
         "Set the mode of this module and all descendent modules to `eval`."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        self.training = False
+        for module in self.modules():
+            module.eval()
 
     def named_parameters(self):
         """
         Collect all the parameters of this module and its descendents.
 
-
         Returns:
-            list of pairs: Contains the name and :class:`Parameter` of each ancestor parameter.
+            list of pairs: Contains the name and :class:`Parameter` of each ancestor
+                parameter.
         """
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        params = list(self._parameters.items())
+        for module_name, module in self._modules.items():
+            params.extend(
+                [
+                    (f"{module_name}.{name}", param)
+                    for name, param in module.named_parameters()
+                ]
+            )
+        return params
 
     def parameters(self):
         "Enumerate over all the parameters of this module and its descendents."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError("Need to implement for Task 0.4")
+        params = list(self._parameters.values())
+        for module in self.modules():
+            params.extend(module.parameters())
+        return params
 
     def add_parameter(self, k, v):
         """
