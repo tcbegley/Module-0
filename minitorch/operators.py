@@ -58,7 +58,8 @@ def sigmoid(x):
 
     Calculate as
 
-    :math:`f(x) =  \frac{1.0}{(1.0 + e^{-x})}` if x >=0 else :math:`\frac{e^x}{(1.0 + e^{x})}`
+    :math:`f(x) =  \frac{1.0}{(1.0 + e^{-x})}` if x >=0 else
+    :math:`\frac{e^x}{(1.0 + e^{x})}`
 
     for stability.
 
@@ -145,17 +146,19 @@ def map(fn):
         fn (one-arg function): Function from one value to one value.
 
     Returns:
-        function : A function that takes a list, applies `fn` to each element, and returns a
-        new list
+        function : A function that takes a list, applies `fn` to each element, and
+        returns a new list
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def mapper(args):
+        return [fn(arg) for arg in args]
+
+    return mapper
 
 
 def negList(ls):
     "Use :func:`map` and :func:`neg` to negate each element in `ls`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    return map(neg)(ls)
 
 
 def zipWith(fn):
@@ -174,14 +177,16 @@ def zipWith(fn):
         applying fn(x, y) on each pair of elements.
 
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def zipper(ls1, ls2):
+        return [fn(x1, x2) for x1, x2 in zip(ls1, ls2)]
+
+    return zipper
 
 
 def addLists(ls1, ls2):
     "Add the elements of `ls1` and `ls2` using :func:`zipWith` and :func:`add`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    return zipWith(add)(ls1, ls2)
 
 
 def reduce(fn, start):
@@ -200,17 +205,21 @@ def reduce(fn, start):
         :math:`x_1 \ldots x_n` and computes the reduction :math:`fn(x_3, fn(x_2,
         fn(x_1, x_0)))`
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def reducer(ls):
+        value = start
+        for x in ls:
+            value = fn(x, value)
+        return value
+
+    return reducer
 
 
 def sum(ls):
     "Sum up a list using :func:`reduce` and :func:`add`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    return reduce(add, 0)(ls)
 
 
 def prod(ls):
     "Product of a list using :func:`reduce` and :func:`mul`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    return reduce(mul, 1)(ls)

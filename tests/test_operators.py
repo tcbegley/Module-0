@@ -123,8 +123,8 @@ def test_transitive(a, b, c):
 @given(small_floats, small_floats)
 def test_symmetric(a, b):
     """
-    Write a test that ensures that :func:`minitorch.operators.mul` is symmetric, i.e.
-    gives the same value regardless of the order of its input.
+    Write a test that ensures that :func:`minitorch.operators.mul` is
+    symmetric, i.e. gives the same value regardless of the order of its input.
     """
     assert mul(a, b) == mul(b, a)
 
@@ -178,7 +178,7 @@ def test_sum_distribute(ls1, ls2):
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    assert_close(sum(addLists(ls1, ls2)), add(sum(ls1), sum(ls2)))
 
 
 @pytest.mark.task0_3
