@@ -1,7 +1,8 @@
+import sys
+
 import streamlit as st
 from interface.streamlit_utils import get_img_tag
 from interface.train import render_train_interface
-import sys
 from run_torch import TorchTrain
 
 module_num = int(sys.argv[1])
@@ -31,9 +32,9 @@ module_selection = st.sidebar.radio(
 PAGES = {}
 
 if module_selection == "Module 0":
-    from run_manual import ManualTrain
-    from module_interface import render_module_sandbox
     from math_interface import render_math_sandbox
+    from module_interface import render_module_sandbox
+    from run_manual import ManualTrain
 
     def render_run_manual_interface():
         st.header("Module 0 - Manual")

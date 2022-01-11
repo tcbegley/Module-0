@@ -1,10 +1,12 @@
-import streamlit as st
+import inspect
+
+import graph_builder
 import networkx as nx
+import plotly.graph_objects as go
+import streamlit as st
+
 import minitorch
 from minitorch import MathTest, MathTestVariable
-import plotly.graph_objects as go
-import inspect
-import graph_builder
 
 MyModule = None
 minitorch

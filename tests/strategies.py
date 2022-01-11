@@ -1,6 +1,7 @@
-import minitorch
 from hypothesis import settings
 from hypothesis.strategies import composite, floats, integers, lists, permutations
+
+import minitorch
 
 settings.register_profile("ci", deadline=None)
 settings.load_profile("ci")
@@ -78,7 +79,7 @@ def shaped_tensors(
         data = draw(lists(numbers, min_size=td.size, max_size=td.size))
         values.append(
             minitorch.Tensor(
-                minitorch.TensorData(data, td.shape, td.strides), backend=backend
+                minitorch.TensorData(data, td.shape, td.strides), backend=backend,
             )
         )
     return values

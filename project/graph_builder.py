@@ -1,5 +1,6 @@
-import minitorch
 import networkx as nx
+
+import minitorch
 
 
 def build_expression(code):

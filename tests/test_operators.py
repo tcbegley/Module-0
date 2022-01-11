@@ -1,28 +1,29 @@
-from minitorch.operators import (
-    mul,
-    add,
-    neg,
-    relu,
-    addLists,
-    prod,
-    negList,
-    id,
-    inv,
-    lt,
-    eq,
-    max,
-    sigmoid,
-    relu_back,
-    log_back,
-    inv_back,
-    sum,
-)
+import pytest
 from hypothesis import given
 from hypothesis.strategies import lists
-from .strategies import small_floats, assert_close
-import pytest
-from minitorch import MathTest
 
+from minitorch import MathTest
+from minitorch.operators import (
+    add,
+    addLists,
+    eq,
+    id,
+    inv,
+    inv_back,
+    log_back,
+    lt,
+    max,
+    mul,
+    neg,
+    negList,
+    prod,
+    relu,
+    relu_back,
+    sigmoid,
+    sum,
+)
+
+from .strategies import assert_close, med_ints, small_floats
 
 # ## Task 0.1 Basic hypothesis tests.
 

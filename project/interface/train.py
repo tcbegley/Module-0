@@ -1,11 +1,13 @@
-import plotly.graph_objects as go
-import pandas as pd
 import time
-import streamlit as st
+
 import graph_builder
-import networkx as nx
-import minitorch
 import interface.plots as plots
+import networkx as nx
+import pandas as pd
+import plotly.graph_objects as go
+import streamlit as st
+
+import minitorch
 
 
 def render_train_interface(
@@ -53,7 +55,7 @@ def render_train_interface(
         st.markdown("### Parameters")
         for n, p in train.model.named_parameters():
             value = st.slider(
-                f"Parameter: {n}", min_value=-10.0, max_value=10.0, value=p.value
+                f"Parameter: {n}", min_value=-10.0, max_value=10.0, value=p.value,
             )
             p.update(value)
 
