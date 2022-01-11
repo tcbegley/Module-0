@@ -110,7 +110,9 @@ def log_back(x, d):
 
 def inv(x):
     ":math:`f(x) = 1/x`"
-    return 1 / x
+    if x != 0:
+        return 1 / x
+    return math.nan
 
 
 def inv_back(x, d):
